@@ -127,8 +127,26 @@ const faviconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
 
 const faviconDataUri = `data:image/svg+xml,${encodeURIComponent(faviconSvg)}`
 
-// Profile image - Real photo
-const profileImagePath = '/static/images/profile.jpg'
+// Profile image placeholder (professional gradient avatar)
+const profileImageSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1"/>
+      <stop offset="50%" style="stop-color:#8b5cf6"/>
+      <stop offset="100%" style="stop-color:#a855f7"/>
+    </linearGradient>
+    <linearGradient id="faceGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffecd2"/>
+      <stop offset="100%" style="stop-color:#fcb69f"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="500" fill="url(#bgGrad)"/>
+  <circle cx="200" cy="180" r="80" fill="url(#faceGrad)"/>
+  <ellipse cx="200" cy="420" rx="120" ry="150" fill="rgba(255,255,255,0.2)"/>
+  <text x="200" y="480" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="rgba(255,255,255,0.9)">Youssef Khamis</text>
+</svg>`
+
+const profileImageDataUri = `data:image/svg+xml,${encodeURIComponent(profileImageSvg)}`
 
 // Main page
 app.get('/', (c) => {
@@ -217,7 +235,7 @@ app.get('/', (c) => {
         <div class="nav-container">
             <a href="#home" class="nav-logo magnetic-btn">
                 <div class="logo-avatar">
-                    <img src="${profileImagePath}" alt="YK" class="nav-profile-img">
+                    <img src="${profileImageDataUri}" alt="YK" class="nav-profile-img">
                 </div>
                 <span class="logo-text">YK</span>
                 <span class="logo-dot"></span>
@@ -255,7 +273,7 @@ app.get('/', (c) => {
     <div class="mobile-nav" id="mobile-nav">
         <div class="mobile-nav-content">
             <div class="mobile-nav-profile">
-                <img src="${profileImagePath}" alt="Youssef Khamis" class="mobile-profile-img">
+                <img src="${profileImageDataUri}" alt="Youssef Khamis" class="mobile-profile-img">
                 <span class="mobile-profile-name">Youssef Khamis</span>
             </div>
             <div class="mobile-nav-links">
@@ -270,9 +288,10 @@ app.get('/', (c) => {
             </div>
             <div class="mobile-nav-footer">
                 <div class="mobile-social-links">
-                    <a href="#" class="social-link" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.facebook.com/yousef.khames.mohamed" class="social-link" aria-label="Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/yousef_khames_mohamed/" class="social-link" aria-label="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@yousef_khames_elasuoty" class="social-link" aria-label="TikTok" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://x.com" class="social-link" aria-label="X" target="_blank"><i class="fab fa-x-twitter"></i></a>
                 </div>
             </div>
         </div>
@@ -291,7 +310,7 @@ app.get('/', (c) => {
         <div class="hero-content">
             <div class="hero-profile-container">
                 <div class="hero-profile-image glass-card">
-                    <img src="${profileImagePath}" alt="Youssef Khamis Al-Assiuty" class="profile-img" id="hero-profile-img">
+                    <img src="${profileImageDataUri}" alt="Youssef Khamis Al-Assiuty" class="profile-img" id="hero-profile-img">
                     <div class="profile-glow"></div>
                     <div class="profile-ring"></div>
                 </div>
@@ -348,25 +367,23 @@ app.get('/', (c) => {
             </div>
         </div>
         
-        <div class="scroll-indicator">
-            <div class="mouse">
-                <div class="wheel"></div>
-            </div>
-            <span>Scroll Down</span>
-        </div>
+        <!-- Scroll Indicator removed as requested -->
         
         <div class="hero-social">
-            <a href="#" class="social-link magnetic-btn" aria-label="GitHub" data-social="github">
-                <i class="fab fa-github"></i>
+            <a href="https://www.facebook.com/yousef.khames.mohamed" class="social-link magnetic-btn" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-facebook-f"></i>
             </a>
-            <a href="#" class="social-link magnetic-btn" aria-label="LinkedIn" data-social="linkedin">
-                <i class="fab fa-linkedin-in"></i>
+            <a href="https://www.instagram.com/yousef_khames_mohamed/" class="social-link magnetic-btn" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-instagram"></i>
             </a>
-            <a href="#" class="social-link magnetic-btn" aria-label="Twitter" data-social="twitter">
-                <i class="fab fa-twitter"></i>
+            <a href="https://www.tiktok.com/@yousef_khames_elasuoty" class="social-link magnetic-btn" aria-label="TikTok" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-tiktok"></i>
             </a>
-            <a href="mailto:hello@youssefkhamis.dev" class="social-link magnetic-btn" aria-label="Email">
-                <i class="fas fa-envelope"></i>
+            <a href="https://x.com" class="social-link magnetic-btn" aria-label="X" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-x-twitter"></i>
+            </a>
+            <a href="mailto:Yousef.Khames.Elasuoty@gmail.com" class="social-link magnetic-btn" aria-label="Gmail">
+                <i class="fab fa-google"></i>
             </a>
         </div>
     </section>
@@ -383,11 +400,14 @@ app.get('/', (c) => {
             
             <div class="about-grid">
                 <div class="about-image">
-                    <div class="image-wrapper glass-card">
-                        <img src="${profileImagePath}" alt="Youssef Khamis Al-Assiuty" class="about-profile-img" id="about-profile-img">
+                    <div class="image-wrapper glass-card interactive-image" id="about-image-wrapper">
+                        <img src="${profileImageDataUri}" alt="Youssef Khamis Al-Assiuty" class="about-profile-img" id="about-profile-img">
                         <div class="image-decoration"></div>
+                        <div class="image-glow-effect"></div>
+                        <div class="image-particles"></div>
+                        <div class="image-border-anim"></div>
                     </div>
-                    <div class="experience-badge glass-card">
+                    <div class="experience-badge glass-card floating-badge">
                         <span class="exp-number">3+</span>
                         <span class="exp-text">Years of Experience</span>
                     </div>
@@ -694,454 +714,188 @@ app.get('/', (c) => {
                 <button class="filter-btn" data-filter="ui">UI/UX</button>
             </div>
             
-            <div class="projects-grid">
-                <!-- Project 1 - Modern Dashboard UI -->
-                <div class="project-card-container" data-category="frontend">
-                    <div class="project-card-flipper" id="project-flipper-1">
-                        <!-- Front of Card -->
-                        <div class="project-card-front glass-card">
-                            <div class="project-image">
-                                <div class="project-placeholder gradient-bg-1">
-                                    <i class="fas fa-palette"></i>
-                                </div>
-                                <div class="project-overlay">
-                                    <button class="project-flip-btn magnetic-btn" data-project="1">
-                                        <i class="fas fa-play-circle"></i>
-                                        <span>View Demo</span>
-                                    </button>
-                                </div>
+            <div class="projects-grid-new">
+                <!-- Project 1 -->
+                <div class="project-card-new glass-card" data-category="frontend" data-project-id="1">
+                    <div class="project-card-inner">
+                        <div class="project-card-shine"></div>
+                        <div class="project-image-new">
+                            <div class="project-placeholder gradient-bg-1">
+                                <i class="fas fa-palette"></i>
                             </div>
-                            <div class="project-content">
-                                <div class="project-tags">
-                                    <span class="tag">React</span>
-                                    <span class="tag">TypeScript</span>
-                                    <span class="tag">Tailwind</span>
-                                </div>
-                                <h3 class="project-title">Modern Dashboard UI</h3>
-                                <p class="project-description">
-                                    A sleek admin dashboard with data visualization, dark mode, and responsive design.
-                                </p>
-                                <div class="project-links">
-                                    <a href="#" class="project-link magnetic-btn" rel="noopener noreferrer">
-                                        <i class="fab fa-github"></i>
-                                    </a>
-                                    <a href="#" class="project-link magnetic-btn" rel="noopener noreferrer">
-                                        <i class="fas fa-external-link-alt"></i>
-                                    </a>
-                                </div>
+                            <div class="project-overlay-new">
+                                <button class="view-project-btn magnetic-btn" data-project="1">
+                                    <i class="fas fa-expand"></i>
+                                    <span>View Details</span>
+                                </button>
                             </div>
                         </div>
-                        <!-- Back of Card (Video/Demo) -->
-                        <div class="project-card-back glass-card">
-                            <button class="project-close-btn" data-project="1">
-                                <i class="fas fa-times"></i>
-                            </button>
-                            <div class="project-video-container">
-                                <div class="project-video-placeholder">
-                                    <i class="fas fa-play-circle"></i>
-                                    <span>Demo Video</span>
-                                </div>
+                        <div class="project-content-new">
+                            <div class="project-tags-new">
+                                <span class="tag-new">React</span>
+                                <span class="tag-new">TypeScript</span>
+                                <span class="tag-new">Tailwind</span>
                             </div>
-                            <div class="project-back-content">
-                                <h3>Modern Dashboard UI</h3>
-                                <div class="project-details">
-                                    <div class="detail-item">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span>Real-time data visualization</span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span>Dark/Light mode toggle</span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span>Responsive for all devices</span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span>Export data functionality</span>
-                                    </div>
-                                </div>
-                                <div class="project-gallery">
-                                    <div class="gallery-item gradient-bg-1"><i class="fas fa-image"></i></div>
-                                    <div class="gallery-item gradient-bg-2"><i class="fas fa-image"></i></div>
-                                    <div class="gallery-item gradient-bg-3"><i class="fas fa-image"></i></div>
-                                </div>
+                            <h3 class="project-title-new">Modern Dashboard UI</h3>
+                            <p class="project-desc-new">A sleek admin dashboard with data visualization and dark mode.</p>
+                            <div class="project-links-new">
+                                <a href="#" class="project-link-new"><i class="fab fa-github"></i></a>
+                                <a href="#" class="project-link-new"><i class="fas fa-external-link-alt"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Project 2 - E-Commerce Platform -->
-                <div class="project-card-container" data-category="fullstack">
-                    <div class="project-card-flipper" id="project-flipper-2">
-                        <div class="project-card-front glass-card">
-                            <div class="project-image">
-                                <div class="project-placeholder gradient-bg-2">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </div>
-                                <div class="project-overlay">
-                                    <button class="project-flip-btn magnetic-btn" data-project="2">
-                                        <i class="fas fa-play-circle"></i>
-                                        <span>View Demo</span>
-                                    </button>
-                                </div>
+                <!-- Project 2 -->
+                <div class="project-card-new glass-card" data-category="fullstack" data-project-id="2">
+                    <div class="project-card-inner">
+                        <div class="project-card-shine"></div>
+                        <div class="project-image-new">
+                            <div class="project-placeholder gradient-bg-2">
+                                <i class="fas fa-shopping-cart"></i>
                             </div>
-                            <div class="project-content">
-                                <div class="project-tags">
-                                    <span class="tag">Next.js</span>
-                                    <span class="tag">Node.js</span>
-                                    <span class="tag">MongoDB</span>
-                                </div>
-                                <h3 class="project-title">E-Commerce Platform</h3>
-                                <p class="project-description">
-                                    Full-stack e-commerce solution with cart, payments, and inventory management.
-                                </p>
-                                <div class="project-links">
-                                    <a href="#" class="project-link magnetic-btn" rel="noopener noreferrer">
-                                        <i class="fab fa-github"></i>
-                                    </a>
-                                    <a href="#" class="project-link magnetic-btn" rel="noopener noreferrer">
-                                        <i class="fas fa-external-link-alt"></i>
-                                    </a>
-                                </div>
+                            <div class="project-overlay-new">
+                                <button class="view-project-btn magnetic-btn" data-project="2">
+                                    <i class="fas fa-expand"></i>
+                                    <span>View Details</span>
+                                </button>
                             </div>
                         </div>
-                        <div class="project-card-back glass-card">
-                            <button class="project-close-btn" data-project="2">
-                                <i class="fas fa-times"></i>
-                            </button>
-                            <div class="project-video-container">
-                                <div class="project-video-placeholder">
-                                    <i class="fas fa-play-circle"></i>
-                                    <span>Demo Video</span>
-                                </div>
+                        <div class="project-content-new">
+                            <div class="project-tags-new">
+                                <span class="tag-new">Next.js</span>
+                                <span class="tag-new">Node.js</span>
+                                <span class="tag-new">MongoDB</span>
                             </div>
-                            <div class="project-back-content">
-                                <h3>E-Commerce Platform</h3>
-                                <div class="project-details">
-                                    <div class="detail-item">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span>Product catalog management</span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span>Shopping cart functionality</span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span>Stripe payment integration</span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span>Order tracking system</span>
-                                    </div>
-                                </div>
-                                <div class="project-gallery">
-                                    <div class="gallery-item gradient-bg-4"><i class="fas fa-image"></i></div>
-                                    <div class="gallery-item gradient-bg-5"><i class="fas fa-image"></i></div>
-                                    <div class="gallery-item gradient-bg-6"><i class="fas fa-image"></i></div>
-                                </div>
+                            <h3 class="project-title-new">E-Commerce Platform</h3>
+                            <p class="project-desc-new">Full-stack e-commerce with cart, payments & inventory.</p>
+                            <div class="project-links-new">
+                                <a href="#" class="project-link-new"><i class="fab fa-github"></i></a>
+                                <a href="#" class="project-link-new"><i class="fas fa-external-link-alt"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Project 3 - Mobile App Concept -->
-                <div class="project-card-container" data-category="ui">
-                    <div class="project-card-flipper" id="project-flipper-3">
-                        <div class="project-card-front glass-card">
-                            <div class="project-image">
-                                <div class="project-placeholder gradient-bg-3">
-                                    <i class="fas fa-mobile-alt"></i>
-                                </div>
-                                <div class="project-overlay">
-                                    <button class="project-flip-btn magnetic-btn" data-project="3">
-                                        <i class="fas fa-play-circle"></i>
-                                        <span>View Demo</span>
-                                    </button>
-                                </div>
+                <!-- Project 3 -->
+                <div class="project-card-new glass-card" data-category="ui" data-project-id="3">
+                    <div class="project-card-inner">
+                        <div class="project-card-shine"></div>
+                        <div class="project-image-new">
+                            <div class="project-placeholder gradient-bg-3">
+                                <i class="fas fa-mobile-alt"></i>
                             </div>
-                            <div class="project-content">
-                                <div class="project-tags">
-                                    <span class="tag">Figma</span>
-                                    <span class="tag">UI Design</span>
-                                    <span class="tag">Prototyping</span>
-                                </div>
-                                <h3 class="project-title">Mobile App Concept</h3>
-                                <p class="project-description">
-                                    A fitness tracking app design with gamification and social features.
-                                </p>
-                                <div class="project-links">
-                                    <a href="#" class="project-link magnetic-btn" rel="noopener noreferrer">
-                                        <i class="fab fa-figma"></i>
-                                    </a>
-                                    <a href="#" class="project-link magnetic-btn" rel="noopener noreferrer">
-                                        <i class="fas fa-external-link-alt"></i>
-                                    </a>
-                                </div>
+                            <div class="project-overlay-new">
+                                <button class="view-project-btn magnetic-btn" data-project="3">
+                                    <i class="fas fa-expand"></i>
+                                    <span>View Details</span>
+                                </button>
                             </div>
                         </div>
-                        <div class="project-card-back glass-card">
-                            <button class="project-close-btn" data-project="3">
-                                <i class="fas fa-times"></i>
-                            </button>
-                            <div class="project-video-container">
-                                <div class="project-video-placeholder">
-                                    <i class="fas fa-play-circle"></i>
-                                    <span>Prototype Demo</span>
-                                </div>
+                        <div class="project-content-new">
+                            <div class="project-tags-new">
+                                <span class="tag-new">Figma</span>
+                                <span class="tag-new">UI Design</span>
+                                <span class="tag-new">Prototyping</span>
                             </div>
-                            <div class="project-back-content">
-                                <h3>Mobile App Concept</h3>
-                                <div class="project-details">
-                                    <div class="detail-item">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span>Gamified fitness tracking</span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span>Social challenges</span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span>Progress visualization</span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span>Personalized workouts</span>
-                                    </div>
-                                </div>
-                                <div class="project-gallery">
-                                    <div class="gallery-item gradient-bg-1"><i class="fas fa-image"></i></div>
-                                    <div class="gallery-item gradient-bg-3"><i class="fas fa-image"></i></div>
-                                    <div class="gallery-item gradient-bg-5"><i class="fas fa-image"></i></div>
-                                </div>
+                            <h3 class="project-title-new">Mobile App Concept</h3>
+                            <p class="project-desc-new">Fitness tracking app with gamification features.</p>
+                            <div class="project-links-new">
+                                <a href="#" class="project-link-new"><i class="fab fa-figma"></i></a>
+                                <a href="#" class="project-link-new"><i class="fas fa-external-link-alt"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Project 4 - 3D Interactive Experience -->
-                <div class="project-card-container" data-category="frontend">
-                    <div class="project-card-flipper" id="project-flipper-4">
-                        <div class="project-card-front glass-card">
-                            <div class="project-image">
-                                <div class="project-placeholder gradient-bg-4">
-                                    <i class="fas fa-cube"></i>
-                                </div>
-                                <div class="project-overlay">
-                                    <button class="project-flip-btn magnetic-btn" data-project="4">
-                                        <i class="fas fa-play-circle"></i>
-                                        <span>View Demo</span>
-                                    </button>
-                                </div>
+                <!-- Project 4 -->
+                <div class="project-card-new glass-card" data-category="frontend" data-project-id="4">
+                    <div class="project-card-inner">
+                        <div class="project-card-shine"></div>
+                        <div class="project-image-new">
+                            <div class="project-placeholder gradient-bg-4">
+                                <i class="fas fa-cube"></i>
                             </div>
-                            <div class="project-content">
-                                <div class="project-tags">
-                                    <span class="tag">Three.js</span>
-                                    <span class="tag">WebGL</span>
-                                    <span class="tag">GSAP</span>
-                                </div>
-                                <h3 class="project-title">3D Interactive Experience</h3>
-                                <p class="project-description">
-                                    An immersive 3D web experience with smooth animations and interactions.
-                                </p>
-                                <div class="project-links">
-                                    <a href="#" class="project-link magnetic-btn" rel="noopener noreferrer">
-                                        <i class="fab fa-github"></i>
-                                    </a>
-                                    <a href="#" class="project-link magnetic-btn" rel="noopener noreferrer">
-                                        <i class="fas fa-external-link-alt"></i>
-                                    </a>
-                                </div>
+                            <div class="project-overlay-new">
+                                <button class="view-project-btn magnetic-btn" data-project="4">
+                                    <i class="fas fa-expand"></i>
+                                    <span>View Details</span>
+                                </button>
                             </div>
                         </div>
-                        <div class="project-card-back glass-card">
-                            <button class="project-close-btn" data-project="4">
-                                <i class="fas fa-times"></i>
-                            </button>
-                            <div class="project-video-container">
-                                <div class="project-video-placeholder">
-                                    <i class="fas fa-play-circle"></i>
-                                    <span>3D Demo</span>
-                                </div>
+                        <div class="project-content-new">
+                            <div class="project-tags-new">
+                                <span class="tag-new">Three.js</span>
+                                <span class="tag-new">WebGL</span>
+                                <span class="tag-new">GSAP</span>
                             </div>
-                            <div class="project-back-content">
-                                <h3>3D Interactive Experience</h3>
-                                <div class="project-details">
-                                    <div class="detail-item">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span>Real-time 3D rendering</span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span>Mouse-follow animations</span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span>Performance optimized</span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span>Mobile-friendly fallback</span>
-                                    </div>
-                                </div>
-                                <div class="project-gallery">
-                                    <div class="gallery-item gradient-bg-2"><i class="fas fa-image"></i></div>
-                                    <div class="gallery-item gradient-bg-4"><i class="fas fa-image"></i></div>
-                                    <div class="gallery-item gradient-bg-6"><i class="fas fa-image"></i></div>
-                                </div>
+                            <h3 class="project-title-new">3D Interactive Experience</h3>
+                            <p class="project-desc-new">Immersive 3D web experience with smooth animations.</p>
+                            <div class="project-links-new">
+                                <a href="#" class="project-link-new"><i class="fab fa-github"></i></a>
+                                <a href="#" class="project-link-new"><i class="fas fa-external-link-alt"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Project 5 - Real-time Chat App -->
-                <div class="project-card-container" data-category="fullstack">
-                    <div class="project-card-flipper" id="project-flipper-5">
-                        <div class="project-card-front glass-card">
-                            <div class="project-image">
-                                <div class="project-placeholder gradient-bg-5">
-                                    <i class="fas fa-comments"></i>
-                                </div>
-                                <div class="project-overlay">
-                                    <button class="project-flip-btn magnetic-btn" data-project="5">
-                                        <i class="fas fa-play-circle"></i>
-                                        <span>View Demo</span>
-                                    </button>
-                                </div>
+                <!-- Project 5 -->
+                <div class="project-card-new glass-card" data-category="fullstack" data-project-id="5">
+                    <div class="project-card-inner">
+                        <div class="project-card-shine"></div>
+                        <div class="project-image-new">
+                            <div class="project-placeholder gradient-bg-5">
+                                <i class="fas fa-comments"></i>
                             </div>
-                            <div class="project-content">
-                                <div class="project-tags">
-                                    <span class="tag">React</span>
-                                    <span class="tag">Socket.io</span>
-                                    <span class="tag">Express</span>
-                                </div>
-                                <h3 class="project-title">Real-time Chat App</h3>
-                                <p class="project-description">
-                                    A modern chat application with real-time messaging and file sharing.
-                                </p>
-                                <div class="project-links">
-                                    <a href="#" class="project-link magnetic-btn" rel="noopener noreferrer">
-                                        <i class="fab fa-github"></i>
-                                    </a>
-                                    <a href="#" class="project-link magnetic-btn" rel="noopener noreferrer">
-                                        <i class="fas fa-external-link-alt"></i>
-                                    </a>
-                                </div>
+                            <div class="project-overlay-new">
+                                <button class="view-project-btn magnetic-btn" data-project="5">
+                                    <i class="fas fa-expand"></i>
+                                    <span>View Details</span>
+                                </button>
                             </div>
                         </div>
-                        <div class="project-card-back glass-card">
-                            <button class="project-close-btn" data-project="5">
-                                <i class="fas fa-times"></i>
-                            </button>
-                            <div class="project-video-container">
-                                <div class="project-video-placeholder">
-                                    <i class="fas fa-play-circle"></i>
-                                    <span>Chat Demo</span>
-                                </div>
+                        <div class="project-content-new">
+                            <div class="project-tags-new">
+                                <span class="tag-new">React</span>
+                                <span class="tag-new">Socket.io</span>
+                                <span class="tag-new">Express</span>
                             </div>
-                            <div class="project-back-content">
-                                <h3>Real-time Chat App</h3>
-                                <div class="project-details">
-                                    <div class="detail-item">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span>Instant messaging</span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span>File sharing support</span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span>Group conversations</span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span>Read receipts</span>
-                                    </div>
-                                </div>
-                                <div class="project-gallery">
-                                    <div class="gallery-item gradient-bg-1"><i class="fas fa-image"></i></div>
-                                    <div class="gallery-item gradient-bg-2"><i class="fas fa-image"></i></div>
-                                    <div class="gallery-item gradient-bg-5"><i class="fas fa-image"></i></div>
-                                </div>
+                            <h3 class="project-title-new">Real-time Chat App</h3>
+                            <p class="project-desc-new">Modern chat with real-time messaging & file sharing.</p>
+                            <div class="project-links-new">
+                                <a href="#" class="project-link-new"><i class="fab fa-github"></i></a>
+                                <a href="#" class="project-link-new"><i class="fas fa-external-link-alt"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Project 6 - Component Library -->
-                <div class="project-card-container" data-category="ui">
-                    <div class="project-card-flipper" id="project-flipper-6">
-                        <div class="project-card-front glass-card">
-                            <div class="project-image">
-                                <div class="project-placeholder gradient-bg-6">
-                                    <i class="fas fa-layer-group"></i>
-                                </div>
-                                <div class="project-overlay">
-                                    <button class="project-flip-btn magnetic-btn" data-project="6">
-                                        <i class="fas fa-play-circle"></i>
-                                        <span>View Demo</span>
-                                    </button>
-                                </div>
+                <!-- Project 6 -->
+                <div class="project-card-new glass-card" data-category="ui" data-project-id="6">
+                    <div class="project-card-inner">
+                        <div class="project-card-shine"></div>
+                        <div class="project-image-new">
+                            <div class="project-placeholder gradient-bg-6">
+                                <i class="fas fa-layer-group"></i>
                             </div>
-                            <div class="project-content">
-                                <div class="project-tags">
-                                    <span class="tag">Design System</span>
-                                    <span class="tag">Components</span>
-                                    <span class="tag">Storybook</span>
-                                </div>
-                                <h3 class="project-title">Component Library</h3>
-                                <p class="project-description">
-                                    A comprehensive React component library with documentation.
-                                </p>
-                                <div class="project-links">
-                                    <a href="#" class="project-link magnetic-btn" rel="noopener noreferrer">
-                                        <i class="fab fa-github"></i>
-                                    </a>
-                                    <a href="#" class="project-link magnetic-btn" rel="noopener noreferrer">
-                                        <i class="fas fa-external-link-alt"></i>
-                                    </a>
-                                </div>
+                            <div class="project-overlay-new">
+                                <button class="view-project-btn magnetic-btn" data-project="6">
+                                    <i class="fas fa-expand"></i>
+                                    <span>View Details</span>
+                                </button>
                             </div>
                         </div>
-                        <div class="project-card-back glass-card">
-                            <button class="project-close-btn" data-project="6">
-                                <i class="fas fa-times"></i>
-                            </button>
-                            <div class="project-video-container">
-                                <div class="project-video-placeholder">
-                                    <i class="fas fa-play-circle"></i>
-                                    <span>Storybook Demo</span>
-                                </div>
+                        <div class="project-content-new">
+                            <div class="project-tags-new">
+                                <span class="tag-new">Design System</span>
+                                <span class="tag-new">Components</span>
+                                <span class="tag-new">Storybook</span>
                             </div>
-                            <div class="project-back-content">
-                                <h3>Component Library</h3>
-                                <div class="project-details">
-                                    <div class="detail-item">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span>50+ reusable components</span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span>Theme customization</span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span>WCAG accessible</span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span>Full documentation</span>
-                                    </div>
-                                </div>
-                                <div class="project-gallery">
-                                    <div class="gallery-item gradient-bg-3"><i class="fas fa-image"></i></div>
-                                    <div class="gallery-item gradient-bg-4"><i class="fas fa-image"></i></div>
-                                    <div class="gallery-item gradient-bg-1"><i class="fas fa-image"></i></div>
-                                </div>
+                            <h3 class="project-title-new">Component Library</h3>
+                            <p class="project-desc-new">React component library with full documentation.</p>
+                            <div class="project-links-new">
+                                <a href="#" class="project-link-new"><i class="fab fa-github"></i></a>
+                                <a href="#" class="project-link-new"><i class="fas fa-external-link-alt"></i></a>
                             </div>
                         </div>
                     </div>
@@ -1149,6 +903,52 @@ app.get('/', (c) => {
             </div>
         </div>
     </section>
+    
+    <!-- Project Modal -->
+    <div class="project-modal" id="project-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content glass-card">
+            <button class="modal-close-btn" id="modal-close">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-body">
+                <div class="modal-media">
+                    <div class="modal-video-placeholder">
+                        <i class="fas fa-play-circle"></i>
+                        <span>Project Demo</span>
+                    </div>
+                    <div class="modal-gallery">
+                        <div class="modal-gallery-item gradient-bg-1"><i class="fas fa-image"></i></div>
+                        <div class="modal-gallery-item gradient-bg-2"><i class="fas fa-image"></i></div>
+                        <div class="modal-gallery-item gradient-bg-3"><i class="fas fa-image"></i></div>
+                    </div>
+                </div>
+                <div class="modal-info">
+                    <h2 class="modal-title" id="modal-title">Project Title</h2>
+                    <div class="modal-tags" id="modal-tags"></div>
+                    <p class="modal-description" id="modal-description">Project description goes here.</p>
+                    <div class="modal-features" id="modal-features">
+                        <h4><i class="fas fa-star"></i> Key Features</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Feature 1</li>
+                            <li><i class="fas fa-check-circle"></i> Feature 2</li>
+                            <li><i class="fas fa-check-circle"></i> Feature 3</li>
+                        </ul>
+                    </div>
+                    <div class="modal-actions">
+                        <a href="#" class="btn btn-primary magnetic-btn modal-link-live">
+                            <i class="fas fa-external-link-alt"></i>
+                            <span>Live Demo</span>
+                        </a>
+                        <a href="#" class="btn btn-secondary magnetic-btn modal-link-code">
+                            <i class="fab fa-github"></i>
+                            <span>View Code</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <!-- Process Section -->
     <section class="section process" id="process">
@@ -1387,83 +1187,128 @@ app.get('/', (c) => {
         </div>
     </section>
     
-    <!-- Blog Section -->
-    <section class="section blog" id="blog">
+    <!-- Social Media Section -->
+    <section class="section social-media" id="blog">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">Blog</span>
+                <span class="section-tag">Follow Me</span>
                 <h2 class="section-title">
-                    Latest <span class="gradient-text">Articles</span>
+                    Connect on <span class="gradient-text">Social Media</span>
                 </h2>
                 <p class="section-description">
-                    Thoughts, tutorials, and insights from my journey
+                    Stay updated with my latest projects and insights
                 </p>
             </div>
             
-            <div class="blog-grid">
-                <article class="blog-card glass-card">
-                    <div class="blog-image">
-                        <div class="blog-placeholder gradient-bg-1">
-                            <i class="fas fa-code"></i>
+            <div class="social-media-grid">
+                <!-- Facebook -->
+                <a href="https://www.facebook.com/yousef.khames.mohamed" target="_blank" rel="noopener noreferrer" class="social-media-card glass-card facebook-card">
+                    <div class="social-card-inner">
+                        <div class="social-icon-large">
+                            <i class="fab fa-facebook-f"></i>
                         </div>
-                        <span class="blog-category">Development</span>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span><i class="fas fa-calendar"></i> Jan 15, 2024</span>
-                            <span><i class="fas fa-clock"></i> 5 min read</span>
+                        <div class="social-card-content">
+                            <h3>Facebook</h3>
+                            <p>@yousef.khames.mohamed</p>
+                            <span class="social-follow-btn">
+                                <i class="fas fa-plus"></i> Follow
+                            </span>
                         </div>
-                        <h3 class="blog-title">Building Scalable React Applications</h3>
-                        <p class="blog-excerpt">Learn the best practices for structuring large React applications...</p>
-                        <a href="#" class="blog-link magnetic-btn">
-                            Read More <i class="fas fa-arrow-right"></i>
-                        </a>
+                        <div class="social-card-glow"></div>
                     </div>
-                </article>
+                </a>
                 
-                <article class="blog-card glass-card">
-                    <div class="blog-image">
-                        <div class="blog-placeholder gradient-bg-2">
-                            <i class="fas fa-palette"></i>
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/yousef_khames_mohamed/" target="_blank" rel="noopener noreferrer" class="social-media-card glass-card instagram-card">
+                    <div class="social-card-inner">
+                        <div class="social-icon-large">
+                            <i class="fab fa-instagram"></i>
                         </div>
-                        <span class="blog-category">Design</span>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span><i class="fas fa-calendar"></i> Jan 10, 2024</span>
-                            <span><i class="fas fa-clock"></i> 4 min read</span>
+                        <div class="social-card-content">
+                            <h3>Instagram</h3>
+                            <p>@yousef_khames_mohamed</p>
+                            <span class="social-follow-btn">
+                                <i class="fas fa-plus"></i> Follow
+                            </span>
                         </div>
-                        <h3 class="blog-title">The Art of Micro-interactions</h3>
-                        <p class="blog-excerpt">How small animations can dramatically improve user experience...</p>
-                        <a href="#" class="blog-link magnetic-btn">
-                            Read More <i class="fas fa-arrow-right"></i>
-                        </a>
+                        <div class="social-card-glow"></div>
                     </div>
-                </article>
+                </a>
                 
-                <article class="blog-card glass-card">
-                    <div class="blog-image">
-                        <div class="blog-placeholder gradient-bg-3">
-                            <i class="fas fa-lightbulb"></i>
+                <!-- TikTok -->
+                <a href="https://www.tiktok.com/@yousef_khames_elasuoty" target="_blank" rel="noopener noreferrer" class="social-media-card glass-card tiktok-card">
+                    <div class="social-card-inner">
+                        <div class="social-icon-large">
+                            <i class="fab fa-tiktok"></i>
                         </div>
-                        <span class="blog-category">Tips</span>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span><i class="fas fa-calendar"></i> Jan 5, 2024</span>
-                            <span><i class="fas fa-clock"></i> 3 min read</span>
+                        <div class="social-card-content">
+                            <h3>TikTok</h3>
+                            <p>@yousef_khames_elasuoty</p>
+                            <span class="social-follow-btn">
+                                <i class="fas fa-plus"></i> Follow
+                            </span>
                         </div>
-                        <h3 class="blog-title">Vibe Coding: My Approach to Development</h3>
-                        <p class="blog-excerpt">Discover how embracing creativity can transform your coding...</p>
-                        <a href="#" class="blog-link magnetic-btn">
-                            Read More <i class="fas fa-arrow-right"></i>
-                        </a>
+                        <div class="social-card-glow"></div>
                     </div>
-                </article>
+                </a>
+                
+                <!-- X (Twitter) -->
+                <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="social-media-card glass-card x-card">
+                    <div class="social-card-inner">
+                        <div class="social-icon-large">
+                            <i class="fab fa-x-twitter"></i>
+                        </div>
+                        <div class="social-card-content">
+                            <h3>X</h3>
+                            <p>@youssefkhamis</p>
+                            <span class="social-follow-btn">
+                                <i class="fas fa-plus"></i> Follow
+                            </span>
+                        </div>
+                        <div class="social-card-glow"></div>
+                    </div>
+                </a>
+                
+                <!-- Gmail -->
+                <a href="mailto:Yousef.Khames.Elasuoty@gmail.com" class="social-media-card glass-card gmail-card">
+                    <div class="social-card-inner">
+                        <div class="social-icon-large">
+                            <i class="fab fa-google"></i>
+                        </div>
+                        <div class="social-card-content">
+                            <h3>Gmail</h3>
+                            <p>Yousef.Khames.Elasuoty</p>
+                            <span class="social-follow-btn">
+                                <i class="fas fa-envelope"></i> Contact
+                            </span>
+                        </div>
+                        <div class="social-card-glow"></div>
+                    </div>
+                </a>
+                
+                <!-- GitHub -->
+                <a href="#" class="social-media-card glass-card github-card">
+                    <div class="social-card-inner">
+                        <div class="social-icon-large">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div class="social-card-content">
+                            <h3>GitHub</h3>
+                            <p>Coming Soon</p>
+                            <span class="social-follow-btn">
+                                <i class="fas fa-code"></i> Follow
+                            </span>
+                        </div>
+                        <div class="social-card-glow"></div>
+                    </div>
+                </a>
             </div>
             
-            <div class="blog-cta">
-                <p>More articles coming soon! Subscribe to get notified.</p>
+            <div class="social-cta glass-card">
+                <div class="social-cta-content">
+                    <i class="fas fa-heart"></i>
+                    <p>Let's connect and create something amazing together!</p>
+                </div>
             </div>
         </div>
     </section>
@@ -1485,11 +1330,11 @@ app.get('/', (c) => {
                 <div class="contact-info">
                     <div class="info-card glass-card">
                         <div class="info-icon">
-                            <i class="fas fa-envelope"></i>
+                            <i class="fab fa-google"></i>
                         </div>
                         <div class="info-content">
-                            <h4>Email</h4>
-                            <a href="mailto:hello@youssefkhamis.dev">hello@youssefkhamis.dev</a>
+                            <h4>Gmail</h4>
+                            <a href="mailto:Yousef.Khames.Elasuoty@gmail.com">Yousef.Khames.Elasuoty@gmail.com</a>
                         </div>
                     </div>
                     
@@ -1516,17 +1361,20 @@ app.get('/', (c) => {
                     <div class="social-links-contact">
                         <h4>Connect With Me</h4>
                         <div class="social-icons">
-                            <a href="#" class="social-icon magnetic-btn" data-social="github" aria-label="GitHub">
-                                <i class="fab fa-github"></i>
+                            <a href="https://www.facebook.com/yousef.khames.mohamed" class="social-icon magnetic-btn" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-facebook-f"></i>
                             </a>
-                            <a href="#" class="social-icon magnetic-btn" data-social="linkedin" aria-label="LinkedIn">
-                                <i class="fab fa-linkedin-in"></i>
+                            <a href="https://www.instagram.com/yousef_khames_mohamed/" class="social-icon magnetic-btn" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-instagram"></i>
                             </a>
-                            <a href="#" class="social-icon magnetic-btn" data-social="twitter" aria-label="Twitter">
-                                <i class="fab fa-twitter"></i>
+                            <a href="https://www.tiktok.com/@yousef_khames_elasuoty" class="social-icon magnetic-btn" aria-label="TikTok" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-tiktok"></i>
                             </a>
-                            <a href="#" class="social-icon magnetic-btn" data-social="dribbble" aria-label="Dribbble">
-                                <i class="fab fa-dribbble"></i>
+                            <a href="https://x.com" class="social-icon magnetic-btn" aria-label="X" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-x-twitter"></i>
+                            </a>
+                            <a href="mailto:Yousef.Khames.Elasuoty@gmail.com" class="social-icon magnetic-btn" aria-label="Gmail">
+                                <i class="fab fa-google"></i>
                             </a>
                         </div>
                     </div>
@@ -1668,10 +1516,11 @@ app.get('/', (c) => {
                     </div>
                     <div class="footer-column">
                         <h4>Connect</h4>
-                        <a href="#" data-social="github" rel="noopener noreferrer">GitHub</a>
-                        <a href="#" data-social="linkedin" rel="noopener noreferrer">LinkedIn</a>
-                        <a href="#" data-social="twitter" rel="noopener noreferrer">Twitter</a>
-                        <a href="mailto:hello@youssefkhamis.dev">Email</a>
+                        <a href="https://www.facebook.com/yousef.khames.mohamed" target="_blank" rel="noopener noreferrer">Facebook</a>
+                        <a href="https://www.instagram.com/yousef_khames_mohamed/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                        <a href="https://www.tiktok.com/@yousef_khames_elasuoty" target="_blank" rel="noopener noreferrer">TikTok</a>
+                        <a href="https://x.com" target="_blank" rel="noopener noreferrer">X</a>
+                        <a href="mailto:Yousef.Khames.Elasuoty@gmail.com">Gmail</a>
                     </div>
                 </div>
             </div>
